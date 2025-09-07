@@ -1,9 +1,9 @@
 const express = require ("express");
-const mysql = require ("mysql");
+const mysql = require("mysql");
 const dotenv =require('dotenv');
 const path=require ("path");
 
-dotenv.config({path:"./.env"});
+dotenv.config ({path:"./.env"});
 
 const app = express();
 
@@ -32,6 +32,9 @@ app.use("/auth",require("./routes/auth"));
 
 
 const PORT = process.env.PORT || 5001;
+app.get("/",(req,res) =>{
+    res.send("Hello from render")
+})
 app.listen(PORT,() =>{
     console.log('Server running on port $(PORT)');
 });
