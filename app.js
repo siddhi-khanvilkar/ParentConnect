@@ -11,7 +11,8 @@ const db = mysql.createConnection({
     host:process.env.DATABASE_HOST,
     user:process.env.DATABASE_USER,
     password:process.env.DATABASE_PASSWORD,
-    database:process.env.DATABASE
+    database:process.env.DATABASE_NAME,
+    port:process.env.DATABASE_PORT
 });
 
 const publicDirectory = path.join(__dirname,"./public");
@@ -36,5 +37,5 @@ app.get("/",(req,res) =>{
     res.send("Hello from render")
 })
 app.listen(PORT,() =>{
-    console.log('Server running on port $(PORT)');
+    console.log('Server running on port ${PORT}');
 });
