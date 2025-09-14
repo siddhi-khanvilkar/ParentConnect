@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -110,4 +110,170 @@ nav h2{
    
    
 }
+ */
 
+/* responsive css code */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url("/images/try7.JPG");
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    height: 100vh;
+    background-size: cover;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 50px;
+    background-color: azure;
+    box-shadow: 0 4px 12px rgb(88, 157, 157);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #045867;
+    font-family: "Merriweather", serif;
+}
+
+/* Navbar Links */
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    margin-left: 30px;
+    transition: 0.3s;
+}
+
+nav li a:hover {
+    color: #0d6efd;
+    font-size: 20px;
+    transition: all 0.3s linear;
+}
+
+/* Hamburger Icon (Hidden by Default) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    height: 3px;
+    width: 25px;
+    background: #333;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 100px;
+    min-height: 90vh;
+}
+
+.herotext {
+    width: 50%;
+}
+
+.herotext h1 {
+    font-size: 50px;
+    font-weight: 700;
+    color: #045867;
+    font-family: "Merriweather", serif;
+}
+
+.herotext h4 {
+    color: #0c6979;
+    font-family: "Barlow Condensed", sans-serif;
+}
+
+.herotext p {
+    font-size: 20px;
+    color: #0c6f81;
+    margin-top: 20px;
+    line-height: 2;
+    font-family: "Barlow Condensed", sans-serif;
+}
+
+.heroimage {
+    width: 50%;
+}
+
+.heroimage img {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+    }
+    .herotext, .heroimage {
+        width: 100%;
+    }
+    .herotext h1 {
+        font-size: 36px;
+    }
+    .herotext p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        background: azure;
+        flex-direction: column;
+        display: none;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav li a {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
