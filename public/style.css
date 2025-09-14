@@ -115,13 +115,14 @@ nav h2{
 /* responsive css code */
 
 
-
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body */
 body {
     background: url("/images/try7.JPG");
     font-family: 'Poppins', sans-serif;
@@ -140,6 +141,13 @@ nav {
     background-color: azure;
     box-shadow: 0 4px 12px rgb(88, 157, 157);
     position: sticky;
+}
+
+nav h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #045867;
+    font-family: "Merriweather", serif;
 }
 
 nav ul {
@@ -164,13 +172,6 @@ nav li a:hover {
     color: #0d6efd;
     font-size: 20px;
     transition: all 0.3s linear;
-}
-
-nav h2 {
-    font-size: 30px;
-    font-weight: 700;
-    color: #045867;
-    font-family: "Merriweather", serif;
 }
 
 /* Hamburger menu (hidden on desktop) */
@@ -221,7 +222,9 @@ nav h2 {
     font-family: "Barlow Condensed", sans-serif;
 }
 
+/* Hero image */
 .heroimage {
+    display: none; /* hidden by default */
     width: 50%;
 }
 
@@ -232,7 +235,7 @@ nav h2 {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design */
+/* Tablet responsiveness */
 @media (max-width: 992px) {
     .herotext h1 {
         font-size: 36px;
@@ -243,12 +246,11 @@ nav h2 {
     .hero {
         padding: 50px;
     }
-    .heroimage {
-    display: none;
-    }
 }
 
+/* Mobile responsiveness */
 @media (max-width: 768px) {
+    /* Navbar */
     nav ul {
         display: none;
         flex-direction: column;
@@ -269,6 +271,17 @@ nav h2 {
         display: flex;
     }
 
+    nav h2 {
+        font-size: 24px;
+    }
+
+    nav li a {
+        margin: 15px 0;
+        display: block;
+        font-size: 18px;
+    }
+
+    /* Hero section */
     .hero {
         flex-direction: column;
         text-align: center;
@@ -287,13 +300,17 @@ nav h2 {
         font-size: 16px;
     }
 
-    nav h2 {
-        font-size: 24px;
+    /* Show hero image only on mobile */
+    .heroimage {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
     }
 
-    nav li a {
-        margin: 15px 0;
-        display: block;
-        font-size: 18px;
+    .heroimage img {
+        width: 80%;
+        max-width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
 }
