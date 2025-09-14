@@ -41,24 +41,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/style.css">
-  <title>ParentConnect</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>ParentConnect</title>
 </head>
 <body>
 
   <nav>
     <h2>ParentConnect</h2>
-
-    <!-- Hamburger Icon for Mobile -->
-    <div class="menu-toggle" id="menu-toggle">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <ul id="nav-links">
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+    <ul id="menu">
       <li><a href="/">Profile</a></li>
       <li><a href="/login">Login</a></li>
       <li><a href="/teacherlogin">Teacher Login</a></li>
@@ -69,10 +62,8 @@
   <div class="hero">
     <div class="herotext">
       <h1>Welcome To ParentConnect</h1>
-      <h4>Stay Connected To Your Child Academic Journey</h4>
-      <p>
-        Acquiring Knowledge made easy for parents. Track attendance, view exam results and communicate with teachers easily!
-      </p>
+      <h4>Stay Connected To Your Child's Academic Journey</h4>
+      <p>Acquiring knowledge made easy for parents. Track attendance, view exam results, and communicate with teachers easily!</p>
     </div>
     <div class="heroimage">
       <img src="/images/try7.JPG" alt="ParentConnect">
@@ -80,12 +71,10 @@
   </div>
 
   <script>
-    // Toggle menu on mobile
-    const menuToggle = document.getElementById("menu-toggle");
-    const navLinks = document.getElementById("nav-links");
-
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("show");
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
     });
   </script>
 
