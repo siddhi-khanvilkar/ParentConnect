@@ -114,6 +114,8 @@ nav h2{
 
 /* responsive css code */
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -138,18 +140,8 @@ nav {
     background-color: azure;
     box-shadow: 0 4px 12px rgb(88, 157, 157);
     position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
-nav h2 {
-    font-size: 30px;
-    font-weight: 700;
-    color: #045867;
-    font-family: "Merriweather", serif;
-}
-
-/* Navbar Links */
 nav ul {
     display: flex;
     justify-content: space-around;
@@ -174,22 +166,29 @@ nav li a:hover {
     transition: all 0.3s linear;
 }
 
-/* Hamburger Icon (Hidden by Default) */
-.hamburger {
+nav h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #045867;
+    font-family: "Merriweather", serif;
+}
+
+/* Hamburger menu (hidden on desktop) */
+.menu-toggle {
     display: none;
     flex-direction: column;
     cursor: pointer;
 }
 
-.hamburger span {
-    height: 3px;
+.menu-toggle div {
     width: 25px;
-    background: #333;
-    margin: 5px 0;
-    border-radius: 5px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: 0.3s;
 }
 
-/* Hero Section */
+/* Hero section */
 .hero {
     display: flex;
     justify-content: space-between;
@@ -235,45 +234,63 @@ nav li a:hover {
 
 /* Responsive Design */
 @media (max-width: 992px) {
-    .hero {
-        flex-direction: column;
-        padding: 40px 20px;
-        text-align: center;
-    }
-    .herotext, .heroimage {
-        width: 100%;
-    }
     .herotext h1 {
         font-size: 36px;
     }
     .herotext p {
-        font-size: 16px;
+        font-size: 18px;
+    }
+    .hero {
+        padding: 50px;
     }
 }
 
 @media (max-width: 768px) {
     nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: azure;
         position: absolute;
         top: 70px;
-        right: 0;
+        right: 20px;
         width: 200px;
-        background: azure;
-        flex-direction: column;
-        display: none;
-        padding: 20px 0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     nav ul.show {
         display: flex;
     }
 
-    nav li a {
-        margin: 10px 0;
-        font-size: 18px;
+    .menu-toggle {
+        display: flex;
     }
 
-    .hamburger {
-        display: flex;
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .herotext, .heroimage {
+        width: 100%;
+    }
+
+    .herotext h1 {
+        font-size: 28px;
+    }
+
+    .herotext p {
+        font-size: 16px;
+    }
+
+    nav h2 {
+        font-size: 24px;
+    }
+
+    nav li a {
+        margin: 15px 0;
+        display: block;
+        font-size: 18px;
     }
 }
