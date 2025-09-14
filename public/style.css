@@ -123,7 +123,7 @@ nav h2{
 }
 
 body {
-    /* background: url("/images/try7.JPG"); */
+    background: url("/images/try7.JPG");
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
@@ -242,6 +242,9 @@ nav h2 {
     }
     .hero {
         padding: 50px;
+    }
+    .heroimage {
+    display: none;
     }
 }
 
