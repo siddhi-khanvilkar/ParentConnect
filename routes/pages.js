@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 router.get("/",(req,res)=>{
     res.render("index");
 });
@@ -25,16 +27,13 @@ router.get("/uploadattendence",(req,res)=> {
    res.render("uploadattendence")
 })
 
-router.get("/uploadnotices", (req, res) => {
-    res.render("uploadnotices");
+
+// Show upload notice PDF form
+router.get("/uploadnoticepdf", (req, res) => {
+  res.render("uploadnoticepdf");
 });
 
-router.get("/uploadtimetable", (req, res) => {
-    res.render("uploadtimetable");
-});
-
-router.get("/contactParent", (req, res) => {
-    res.render("contactParent");
-});
+// Show list of all notices
+router.get("/uploadnotice", noticeController.viewNotices);
 
 module.exports=router;
