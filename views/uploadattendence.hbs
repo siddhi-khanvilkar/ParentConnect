@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <title>Upload Attendance</title>
+  <link rel="stylesheet" href="/attendenceupload.css">
+
 </head>
 <body>
   <h2>Upload Attendance</h2>
-  <form action="/attendance/load-students" method="POST">
+  <form action="/auth/load-students" method="POST">
     <label>Month:</label>
     <select name="month" required>
       <option>January</option><option>February</option><option>March</option>

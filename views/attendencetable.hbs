@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Table</title>
+</head>
+<body>
+  <h2>Attendance for {{month}} {{year}}</h2>
+  <form action="/auth/save" method="POST">
+    <input type="hidden" name="month" value="{{month}}">
+    <input type="hidden" name="year" value="{{year}}">
+    <input type="hidden" name="working_days" value="{{working_days}}">
+
+    <table border="1">
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Roll No</th>
+        <th>Class</th>
+        <th>Present Days</th>
+      </tr>
+      {{#each students}}
+      <tr>
+        <td>{{this.student_id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.rollno}}</td>
+        <td>{{this.class}}</td>
+        <td><input type="number" name="attendance[{{this.student_id}}]" min="0" max="{{../working_days}}" required></td>
+      </tr>
+      {{/each}}
+    </table>
+
+    <button type="submit">Save Attendance</button>
+  </form>
+</body>
+</html>
