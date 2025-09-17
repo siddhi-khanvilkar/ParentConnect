@@ -2,11 +2,11 @@ const db = require("../db");
 
 // Save uploaded notice in DB
 exports.uploadNotice = (req, res) => {
-  const { title, upload_date } = req.body;
-  const file_path = req.file.path;
+  const { title } = req.body;
+  const file_path = req.file.filename; // safer for production
 
-  const sql = "INSERT INTO notices (title, upload_date, file_path) VALUES (?, ?, ?)";
-  db.query(sql, [title, upload_date, file_path], (err) => {
+  const sql = "INSERT INTO notices (title, upload_date, file_path) VALUES (?, NOW(), ?)";
+  db.query(sql, [title, file_path], (err) => {
     if (err) {
       console.error("Error saving notice:", err);
       return res.status(500).send("Database error");

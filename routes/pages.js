@@ -33,7 +33,5 @@ router.get("/uploadnoticepdf", (req, res) => {
   res.render("uploadnoticepdf");
 });
 
-// Show list of all notices
-router.get("/uploadnotice", noticeController.viewNotices);
 
 module.exports=router;
