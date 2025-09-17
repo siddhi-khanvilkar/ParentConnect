@@ -7,28 +7,24 @@ const db = mysql.createConnection({
   port: process.env.DATABASE_PORT
 });
 
-// Load students after teacher enters month, year, working days
+// Controller function to load students
 exports.loadStudents = (req, res) => {
-  const { month, year, working_days } = req.body;
+    const sql = `
+        SELECT student_id, student_name AS name, roll_no AS rollno, class 
+        FROM students
+    `;
 
-  // Fetch students from DB (assuming you have a "students" table)
-  const sql = "SELECT student_id, name, rollno, class FROM students";
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching students:", err);
+            return res.status(500).send("Database error");
+        }
 
-  db.query(sql, (err, results) => {
-    if (err) {
-      console.error(err);
-      return res.send("Error loading students");
-    }
-
-    // Render a new page with students list & attendance form
-    res.render("attendanceTable", {
-      students: results,
-      month,
-      year,
-      working_days
+        // Send results to the frontend or render the page
+        res.render("uploadattendence", { students: results });
     });
-  });
 };
+
 
 
 exports.saveAttendance = (req, res) => {
