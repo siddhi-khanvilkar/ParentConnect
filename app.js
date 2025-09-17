@@ -115,6 +115,9 @@ app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views")); // <-- Important change
 
+
+
+
 // MySQL Connect
 db.connect((error) => {
   if (error) {
