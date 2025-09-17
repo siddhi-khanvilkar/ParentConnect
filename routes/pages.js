@@ -21,4 +21,20 @@ router.get("/teacherlogin",(req,res)=> {
    res.render("teacherlogin")
 })
 
+router.get("/uploadattendence",(req,res)=> {
+   res.render("uploadattendence")
+})
+
+router.get("/uploadnotices", (req, res) => {
+    res.render("uploadnotices");
+});
+
+router.get("/uploadtimetable", (req, res) => {
+    res.render("uploadtimetable");
+});
+
+router.get("/contactParent", (req, res) => {
+    res.render("contactParent");
+});
+
 module.exports=router;
