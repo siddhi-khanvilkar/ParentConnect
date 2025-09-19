@@ -47,16 +47,4 @@ exports.saveAttendance = (req, res) => {
 };
 
 
-// Parent view attendance
-exports.viewAttendance = (req, res) => {
-  const { student_id } = req.params;
 
-  const sql = "SELECT * FROM attendance WHERE student_id = ?";
-  db.query(sql, [student_id], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.send("Error loading attendance");
-    }
-    res.render("viewAttendance", { attendance: result });
-  });
-};
