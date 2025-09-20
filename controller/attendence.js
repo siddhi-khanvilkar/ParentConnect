@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require ("mysql");
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -9,21 +9,34 @@ const db = mysql.createConnection({
 
 // Controller function to load students
 exports.loadStudents = (req, res) => {
-    const sql = `
-        SELECT student_id, student_name AS name, roll_no AS rollno, class 
-        FROM students
-    `;
+  const { month, year, working_days, class: selectedClass } = req.body;
 
-    db.query(sql, (err, results) => {
-        if (err) {
-            console.error("Error fetching students:", err);
-            return res.status(500).send("Database error");
-        }
+  const sql = `
+    SELECT student_id, student_name AS name, roll_no AS rollno, class 
+    FROM students
+    WHERE class = ?
+  `;
 
-        // Send results to the frontend or render the page
-        res.render("uploadattendence", { students: results });
+  db.query(sql, [selectedClass], (err, results) => {
+    if (err) {
+      console.error("Error fetching students:", err);
+      return res.status(500).send("Database error");
+    }
+
+    if (results.length === 0) {
+      return res.send("No students found for the selected class.");
+    }
+
+    res.render("attendencetable", {
+      students: results,
+      month,
+      year,
+      working_days
     });
+  });
 };
+
+
 
 
 
