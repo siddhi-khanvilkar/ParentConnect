@@ -1,8 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middleware/upload");
-
-
 
 router.get("/",(req,res)=>{
     res.render("index");
