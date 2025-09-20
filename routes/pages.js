@@ -21,6 +21,10 @@ router.get("/teacherlogin",(req,res)=> {
    res.render("teacherlogin")
 })
 
+router.get("/teacherDashboard",(req,res)=>{
+   res.render("teacherDashboard")
+})
+
 router.get("/uploadattendence",(req,res)=> {
    res.render("uploadattendence")
 })
