@@ -29,9 +29,11 @@ router.get("/uploadattendence",(req,res)=> {
 })
 
 
-router.get("/uploadnoticepdf", noticeController.showUploadPage); // PDF upload form
+// Show upload notice form
+router.get('/uploadnotice', (req, res) => {
+    res.render('uploadnotice');  // this will render views/uploadnotice.hbs
+});
 
-router.get("/uploadnotice", noticeController.viewNotices); // Show all notices
 
 
 
