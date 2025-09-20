@@ -35,7 +35,10 @@ const noticeController = require("../controller/notice");
 const router = express.Router();
 const path = require("path");
 const messageController = require('../controller/message');
-const timetableController = require('../controller/timetableController');
+
+const timetableController = require('../controller/timetable');
+
+
 
 
 
