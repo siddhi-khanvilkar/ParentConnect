@@ -3,27 +3,11 @@
 <head>
   <title>Attendance Table</title>
   <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 15px;
-    }
-    th, td {
-      border: 1px solid #333;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #eee;
-    }
-    .message {
-      margin-top: 15px;
-      font-weight: bold;
-      color: green;
-    }
-    .error {
-      color: red;
-    }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 15px; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+    .message { margin-top: 15px; font-weight: bold; color: green; }
+    .error { color: red; }
   </style>
 </head>
 <body>
@@ -53,11 +37,11 @@
           <td>{{this.rollno}}</td>
           <td>{{this.class}}</td>
           <td>
-            <input 
-              type="number" 
-              name="attendance[{{this.student_id}}]" 
-              min="0" 
-              max="{{../working_days}}" 
+            <input
+              type="number"
+              name="attendance[{{this.student_id}}]"
+              min="0"
+              max="{{../working_days}}"
               required
               class="presentDaysInput"
             >
@@ -75,17 +59,14 @@
   {{/if}}
 
   <script>
-    // Client-side validation to ensure present days <= working days
     const workingDays = parseInt(document.getElementById('workingDays').value, 10);
-    const inputs = document.querySelectorAll('.presentDaysInput');
-
-    inputs.forEach(input => {
+    document.querySelectorAll('.presentDaysInput').forEach(input => {
       input.addEventListener('input', function () {
         let val = parseInt(this.value, 10);
         if (val > workingDays) {
           alert(`Present days cannot exceed working days (${workingDays}).`);
           this.value = workingDays;
-        } else if (val < 0) {
+        } else if (val < 0 || isNaN(val)) {
           this.value = 0;
         }
       });
