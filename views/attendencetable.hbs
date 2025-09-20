@@ -32,10 +32,29 @@
       {{/each}}
     </table>
 
+    <div id="message" style="color: green; margin-top: 15px;">
+  {{message}}
+</div>
+
     
 
 
     <button type="submit">Save Attendance</button>
   </form>
 </body>
-</html> this is my attendence table check 
+<script>
+  const workingDays = parseInt('{{working_days}}', 10);
+  document.querySelectorAll('input[name^="attendance"]').forEach(input => {
+    input.addEventListener('input', () => {
+      let val = parseInt(input.value, 10);
+      if (val > workingDays) {
+        alert(`Present days cannot exceed working days (${workingDays}).`);
+        input.value = workingDays;
+      } else if (val < 0 || isNaN(val)) {
+        input.value = 0;
+      }
+    });
+  });
+</script>
+
+</html> 

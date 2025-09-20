@@ -124,8 +124,47 @@ exports.loadStudents = (req, res) => {
 };
 
 // ✅ Controller to save attendance
+// exports.saveAttendance = (req, res) => {
+//   const { month, year, working_days, attendance } = req.body;
+
+//   if (!attendance || Object.keys(attendance).length === 0) {
+//     return res.status(400).send("No attendance data received.");
+//   }
+
+//   const attendanceData = Object.entries(attendance).map(
+//     ([student_id, present_days]) => [
+//       student_id,
+//       month,
+//       year,
+//       working_days,
+//       present_days
+//     ]
+//   );
+
+//   // ✅ This is the correct placement for the log
+//   console.log("Received attendance data:", attendanceData);
+
+//   const sql = `
+//     INSERT INTO attendance (student_id, month, year, working_days, present_days)
+//     VALUES ?
+//     ON DUPLICATE KEY UPDATE
+//       working_days = VALUES(working_days),
+//       present_days = VALUES(present_days),
+//       created_at = CURRENT_TIMESTAMP
+//   `;
+
+//   db.query(sql, [attendanceData], (err, result) => {
+//     if (err) {
+//       console.error("❌ Error saving attendance:", err);
+//       return res.status(500).send("Error saving attendance");
+//     }
+
+//     res.send("✅ Attendance saved successfully!");
+//   });
+// };
+
 exports.saveAttendance = (req, res) => {
-  const { month, year, working_days, attendance } = req.body;
+  const { month, year, working_days, attendance, class: selectedClass } = req.body;
 
   if (!attendance || Object.keys(attendance).length === 0) {
     return res.status(400).send("No attendance data received.");
@@ -141,10 +180,7 @@ exports.saveAttendance = (req, res) => {
     ]
   );
 
-  // ✅ This is the correct placement for the log
-  console.log("Received attendance data:", attendanceData);
-
-  const sql = `
+  const sqlInsert = `
     INSERT INTO attendance (student_id, month, year, working_days, present_days)
     VALUES ?
     ON DUPLICATE KEY UPDATE
@@ -153,12 +189,32 @@ exports.saveAttendance = (req, res) => {
       created_at = CURRENT_TIMESTAMP
   `;
 
-  db.query(sql, [attendanceData], (err, result) => {
+  db.query(sqlInsert, [attendanceData], (err) => {
     if (err) {
-      console.error("❌ Error saving attendance:", err);
+      console.error("Error saving attendance:", err);
       return res.status(500).send("Error saving attendance");
     }
 
-    res.send("✅ Attendance saved successfully!");
+    // Reload students to render attendance table with success message
+    const sqlLoadStudents = `
+      SELECT student_id, student_name AS name, roll_no AS rollno, class 
+      FROM students
+      WHERE class = ?
+    `;
+
+    db.query(sqlLoadStudents, [selectedClass], (err, results) => {
+      if (err) {
+        console.error("Error fetching students:", err);
+        return res.status(500).send("Database error");
+      }
+
+      res.render("attendencetable", {
+        students: results,
+        month,
+        year,
+        working_days,
+        message: "✅ Attendance saved successfully!"
+      });
+    });
   });
 };
