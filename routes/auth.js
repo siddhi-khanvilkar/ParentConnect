@@ -50,6 +50,6 @@ router.post("/load-students", attendanceCtrl.loadStudents);
 router.post("/save", attendanceCtrl.saveAttendance);
 
 // 📄 Notice Upload Route
-router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadNotice);
+router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadnotice);
 
 module.exports = router;
