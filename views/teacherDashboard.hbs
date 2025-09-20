@@ -1,64 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<>, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="/teacherDashboard.css">
+    <meta charset="UTF-8" />
+    <title>Upload Timetable</title>
+    <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
-    <div class="main_box">
-      <input type="checkbox" id="check" />
-      <div class="btn_one">
-        <label for="check">
-          <i class="material-symbols-outlined">menu</i>
-        </label>
-      </div>
+    <h2>Upload Timetable</h2>
 
-      <div class="sidebar_menu">
-        <div class="logo">
-          <a href="#">ParentConnect</a>
-        </div>
+    <form action="/uploadtimetable" method="POST" enctype="multipart/form-data">
+        <label for="class">Select Class:</label>
+        <select id="class" name="class" required>
+            <option value="">--Select Class--</option>
+            <option value="FYIT">FYIT</option>
+            <option value="SYIT">SYIT</option>
+            <option value="TYIT">TYIT</option>
+        </select><br /><br />
 
-        <div class="btn_two">
-          <label for="check" style="color: grey">
-            <i class="fa-solid fa-xmark"></i>
-            
-          </label>
-        </div>
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required /><br /><br />
 
-        <div class="menu">
-          <ul>
+        <label for="timetablePDF">Upload PDF:</label>
+        <input type="file" id="timetablePDF" name="timetablePDF" accept="application/pdf" required /><br /><br />
 
-            <li>
-              <span class="material-symbols-outlined">punch_clock</span>
-              <a href="/uploadattendence">Upload Attendance</a>
+        <button type="submit">Upload</button>
+    </form>
 
-            </li>
-
-            <li>
-              <span class="material-symbols-outlined">open_in_new</span>
-              <a href="/uploadnotice">Upload Notices</a>
-            </li>
-
-            <li>
-              <span class="material-symbols-outlined">calendar_month</span>
-              <a href="/uploadtimetable">Upload Timetable</a>
-            </li>
-
-            
-            <li>
-              <span class="material-symbols-outlined">call</span>
-              <a href="/contactparent">Contact Parent</a>
-            </li>
-            
-          </ul>
-        </div>
-
-        
-      </div>
-    </div>
+    <a href="/profile">Back to Dashboard</a>
 </body>
 </html>
