@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 // Notice upload handler
-exports.uploadNotice = (req, res) => {
+exports.uploadnotice = (req, res) => {
     const { title, date } = req.body;
     const noticePDF = req.file;
 
