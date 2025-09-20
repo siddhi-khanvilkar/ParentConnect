@@ -28,6 +28,7 @@ router.get("/teacherDashboard",(req,res)=>{
 router.get("/uploadattendence",(req,res)=> {
    res.render("uploadattendence")
 })
+router.get("/load-students", attendanceCtrl.loadStudents); // better as GET
 
 
 // Show upload notice form

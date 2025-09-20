@@ -6,6 +6,8 @@
 <body>
   <h2>Attendance for {{month}} {{year}}</h2>
   <form action="/auth/save" method="POST">
+  
+
     <input type="hidden" name="month" value="{{month}}">
     <input type="hidden" name="year" value="{{year}}">
     <input type="hidden" name="working_days" value="{{working_days}}">
@@ -28,6 +30,9 @@
       </tr>
       {{/each}}
     </table>
+
+    
+
 
     <button type="submit">Save Attendance</button>
   </form>
