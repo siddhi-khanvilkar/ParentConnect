@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/upload");
 
 
 
@@ -28,10 +29,11 @@ router.get("/uploadattendence",(req,res)=> {
 })
 
 
-// Show upload notice PDF form
-router.get("/uploadnoticepdf", (req, res) => {
-  res.render("uploadnoticepdf");
-});
+router.get("/uploadnoticepdf", noticeController.showUploadPage); // PDF upload form
+
+router.get("/uploadnotice", noticeController.viewNotices); // Show all notices
+
+
 
 
 module.exports=router;
