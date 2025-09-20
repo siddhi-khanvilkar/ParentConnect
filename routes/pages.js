@@ -36,7 +36,7 @@ router.get('/uploadnotice', (req, res) => {
 });
 
 router.get('/uploadtimetable', (req, res) => {
-    res.render('timetable');
+    res.render('uploadtimetable');
 });
 
 
