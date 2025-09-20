@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Upload Timetable</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <h2>Upload Timetable</h2>
+
+    <form action="/uploadtimetable" method="POST" enctype="multipart/form-data">
+        <label for="class">Select Class:</label>
+        <select id="class" name="class" required>
+            <option value="">--Select Class--</option>
+            <option value="FYIT">FYIT</option>
+            <option value="SYIT">SYIT</option>
+            <option value="TYIT">TYIT</option>
+        </select><br /><br />
+
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required /><br /><br />
+
+        <label for="timetablePDF">Upload PDF:</label>
+        <input type="file" id="timetablePDF" name="timetablePDF" accept="application/pdf" required /><br /><br />
+
+        <button type="submit">Upload</button>
+    </form>
+
+    <a href="/profile">Back to Dashboard</a>
+</body>
+</html>

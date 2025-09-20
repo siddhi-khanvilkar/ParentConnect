@@ -31,6 +31,10 @@ router.get('/uploadnotice', (req, res) => {
     res.render('uploadnotice');  // this will render views/uploadnotice.hbs
 });
 
+router.get('/uploadtimetable', (req, res) => {
+    res.render('timetable');
+});
+
 
 
 
