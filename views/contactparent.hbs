@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Parent</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <h2>Send Message to Parent</h2>
+
+  <form action="/sendmessage" method="POST">
+    <label for="parentName">Parent Name:</label>
+    <input type="text" id="parentName" name="parentName" required /><br /><br />
+
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" name="studentName" required /><br /><br />
+
+    <label for="message">Message:</label><br />
+    <textarea id="message" name="message" rows="6" required></textarea><br /><br />
+
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="/teacherDashboard">Back to Dashboard</a>
+</body>
+</html>

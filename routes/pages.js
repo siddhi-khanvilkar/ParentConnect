@@ -39,6 +39,11 @@ router.get('/uploadtimetable', (req, res) => {
     res.render('uploadtimetable');
 });
 
+router.get('/contactparent', (req, res) => {
+    res.render('contactparent');
+});
+
+
 
 
 
