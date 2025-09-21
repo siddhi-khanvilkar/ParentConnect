@@ -121,7 +121,21 @@ body {
 }
 
 
+.welcome {
+  color: white;
+  padding: 20px;
+  margin-left: 60px; /* pushes it away from the hamburger */
+  font-size: 22px;
+  font-weight: 600;
+  position: relative;
+  z-index: 1; /* keeps it above sidebar bg */
+}
+
+.welcome h2 {
+  color: white;
+}
+
 .welcome h2 span {
-  color:aliceblue; /* accent color for parent name */
+  color: #4da6ff; /* accent for parentName */
   font-weight: 700;
 }
