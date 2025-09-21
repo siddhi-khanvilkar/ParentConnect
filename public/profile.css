@@ -122,6 +122,6 @@ body {
 
 
 .welcome h2 span {
-  color: #00ffcc; /* accent color for parent name */
+  color:aliceblue; /* accent color for parent name */
   font-weight: 700;
 }
