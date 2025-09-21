@@ -220,8 +220,8 @@ exports.register = (req, res) => {
     console.log("Register request received:", req.body);
 
     const username = req.body.username;
-    const Student_id = req.body.student_id;
-    const Student_rollno = req.body.student_rollno;
+    const student_id = req.body.student_id;
+    const student_rollno = req.body.student_rollno;
     const pass = req.body.pass;
     const cpass = req.body.cpass;
 
