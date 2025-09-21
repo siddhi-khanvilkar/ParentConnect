@@ -222,7 +222,8 @@ exports.saveAttendance = (req, res) => {
 
 // ✅ Fetch attendance for a specific student (parent view)
 exports.viewAttendance = (req, res) => {
-  const { student_id } = req.query; // We'll pass student_id from parent login/session
+  // Prefer session student_id for security
+  const student_id = req.session.student_id || req.query.student_id;
 
   if (!student_id) {
     return res.status(400).send("Student ID is required");
@@ -230,7 +231,10 @@ exports.viewAttendance = (req, res) => {
 
   const sql = `
     SELECT month, year, working_days, present_days, 
-           ROUND((present_days/working_days)*100, 2) AS percentage
+           CASE 
+             WHEN working_days > 0 THEN ROUND((present_days / working_days) * 100, 2)
+             ELSE 0
+           END AS percentage
     FROM attendance
     WHERE student_id = ?
     ORDER BY year DESC, month DESC
@@ -244,8 +248,8 @@ exports.viewAttendance = (req, res) => {
 
     res.render("viewattendance", {
       attendance: results,
-      student_id
+      student_id,
+      message: results.length === 0 ? "No attendance records found." : null
     });
   });
 };
-
