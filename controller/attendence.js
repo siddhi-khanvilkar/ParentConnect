@@ -223,7 +223,9 @@ exports.saveAttendance = (req, res) => {
 // ✅ Fetch attendance for a specific student (parent view)
 exports.viewAttendance = (req, res) => {
   // Prefer session student_id for security
-  const student_id = req.session.student_id || req.query.student_id;
+  // const student_id = req.session.student_id || req.query.student_id;
+  const student_id = (req.session && req.session.student_id) || req.query.student_id;
+
 
   if (!student_id) {
     return res.status(400).send("Student ID is required");
