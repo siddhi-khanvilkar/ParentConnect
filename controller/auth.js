@@ -298,7 +298,9 @@ exports.register = (req, res) => {
 // ==================== PARENT LOGIN ====================
 // 
 exports.login = (req, res) => {
-    const username = req.body.username;
+    
+    const username = req.body.Student_id;
+
     const pass = req.body.pass;
 
     db.query("SELECT * FROM parents WHERE name = ?", [username], async (error, results) => {
