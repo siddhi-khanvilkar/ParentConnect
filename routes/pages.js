@@ -50,7 +50,20 @@ router.get('/contactparent', (req, res) => {
 
 // View attendance for parent
 router.get("/viewattendance", attendanceCtrl.viewAttendance);
-res.render("profile", { parentName, student_id: parentStudentId });
+// res.render("profile", { parentName, student_id: parentStudentId });
+
+router.get("/profile", (req, res) => {
+  // Assuming you store parent info in session after login
+  const parentName = req.session.parentName;  
+  const parentStudentId = req.session.student_id;  
+
+  res.render("profile", { parentName, student_id: parentStudentId });
+});
+// After successful parent login
+req.session.parentName = parentNameFromDB;
+req.session.student_id = studentIdFromDB;
+res.redirect("/profile");
+
 
 
 
