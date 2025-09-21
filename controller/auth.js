@@ -242,7 +242,7 @@ exports.register = (req, res) => {
 
         console.log("Student exists. Checking if parent already registered.");
 
-        db.query("SELECT * FROM parents p JOIN student_parent sp ON p.parent_id = sp.parent_id WHERE sp.student_id = ?", [Student_id], async (error, results) => {
+        db.query("SELECT * FROM parents p JOIN student_parent sp ON p.parent_id = sp.parent_id WHERE sp.student_id = ?", [student_id], async (error, results) => {
             if (error) {
                 console.log("Error checking parent existence:", error);
                 return res.render("register", {
