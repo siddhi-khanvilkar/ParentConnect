@@ -297,34 +297,77 @@ exports.register = (req, res) => {
 
 // ==================== PARENT LOGIN ====================
 // 
-exports.login = (req, res) => {
+// exports.login = (req, res) => {
     
-    const username = req.body.Student_id;
+//     const username = req.body.Student_id;
 
+//     const pass = req.body.pass;
+
+//     db.query("SELECT * FROM parents WHERE name = ?", [username], async (error, results) => {
+//         if (error) {
+//             console.log("DB error:", error);
+//             return res.render("login", {
+//                 message: "Server error during login"
+//             });
+//         }
+
+//         if (results.length === 0) {
+//             return res.render("login", {
+//                 message: "Parent is not registered"
+//             });
+//         }
+
+//         const storedHashedPassword = results[0].password;
+//         bcrypt.compare(pass, storedHashedPassword, (err, isMatch) => {
+//             if (err) {
+//                 console.log("Password compare error:", err);
+//                 return res.render("login", {
+//                     message: "Error during password check"
+//                 });
+//             }
+
+//             if (!isMatch) {
+//                 return res.render("login", {
+//                     message: "Incorrect Password"
+//                 });
+//             }
+
+//             return res.render("profile", {
+//                 parentName: results[0].name
+//             });
+//         });
+//     });
+// };
+
+exports.login = (req, res) => {
+    const student_id = req.body.student_id;
     const pass = req.body.pass;
 
-    db.query("SELECT * FROM parents WHERE name = ?", [username], async (error, results) => {
-        if (error) {
-            console.log("DB error:", error);
-            return res.render("login", {
-                message: "Server error during login"
-            });
-        }
+    console.log("Login attempt for student ID:", student_id);
 
-        if (results.length === 0) {
-            return res.render("login", {
-                message: "Parent is not registered"
-            });
-        }
-
-        const storedHashedPassword = results[0].password;
-        bcrypt.compare(pass, storedHashedPassword, (err, isMatch) => {
-            if (err) {
-                console.log("Password compare error:", err);
+    // Step 1: Find parent_id linked to the student
+    db.query(
+        "SELECT p.* FROM parents p JOIN student_parent sp ON p.parent_id = sp.parent_id WHERE sp.student_id = ?",
+        [student_id],
+        async (error, results) => {
+            if (error) {
+                console.error("DB error:", error);
                 return res.render("login", {
-                    message: "Error during password check"
+                    message: "Server error during login"
                 });
             }
+
+            if (results.length === 0) {
+                console.log("No parent linked to this student ID");
+                return res.render("login", {
+                    message: "Parent is not registered"
+                });
+            }
+
+            const parent = results[0];
+            const hashedPassword = parent.password;
+
+            const isMatch = await bcrypt.compare(pass, hashedPassword);
 
             if (!isMatch) {
                 return res.render("login", {
@@ -333,11 +376,12 @@ exports.login = (req, res) => {
             }
 
             return res.render("profile", {
-                parentName: results[0].name
+                parentName: parent.name
             });
-        });
-    });
+        }
+    );
 };
+
 
 
 
