@@ -154,7 +154,7 @@ exports.register = (req, res) => {
     const cpass = req.body.cpass;
 
     // ✅ Check if student exists in students table
-    db.query("SELECT Student_id FROM students WHERE student_id = ?", [Student_id], (error, studentResults) => {
+    db.query("SELECT student_id FROM students WHERE student_id = ?", [Student_id], (error, studentResults) => {
         if (error) {
             console.log(error);
             return;
