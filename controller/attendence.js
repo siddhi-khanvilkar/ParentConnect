@@ -221,11 +221,10 @@ exports.saveAttendance = (req, res) => {
 };
 
 // ✅ Fetch attendance for a specific student (parent view)
-exports.viewAttendance = (req, res) => {
-  // Prefer session student_id for security
-  // const student_id = req.session.student_id || req.query.student_id;
-  const student_id = (req.session && req.session.student_id) || req.query.student_id;
+// 
 
+exports.viewAttendance = (req, res) => {
+  const student_id = req.session && req.session.student_id;
 
   if (!student_id) {
     return res.status(400).send("Student ID is required");
@@ -250,11 +249,8 @@ exports.viewAttendance = (req, res) => {
 
     res.render("viewattendence", {
       attendance: results,
-      student_id: req.session.student_id ,
+      student_id,
       message: results.length === 0 ? "No attendance records found." : null
     });
-
-    
-
   });
 };
