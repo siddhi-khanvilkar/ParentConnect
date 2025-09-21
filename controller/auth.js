@@ -225,7 +225,7 @@ exports.register = (req, res) => {
     const pass = req.body.pass;
     const cpass = req.body.cpass;
 
-    db.query("SELECT student_id FROM students WHERE student_id = ?", [Student_id], (error, studentResults) => {
+    db.query("SELECT student_id FROM students WHERE student_id = ?", [student_id], (error, studentResults) => {
         if (error) {
             console.log("Error querying student:", error);
             return res.render("register", {
@@ -234,7 +234,7 @@ exports.register = (req, res) => {
         }
 
         if (!studentResults || studentResults.length === 0) {
-            console.log("Student ID not found in DB.");
+            console.log ("Student ID not found in DB.");
             return res.render("register", {
                 message: "Invalid Student ID. Student not found."
             });
@@ -277,7 +277,7 @@ exports.register = (req, res) => {
                 const parentId = parentResults.insertId;
                 console.log("Inserted parent with ID:", parentId);
 
-                db.query("INSERT INTO student_parent SET ?", { student_id: Student_id, parent_id: parentId }, (err2) => {
+                db.query("INSERT INTO student_parent SET ?", { student_id: student_id, parent_id: parentId }, (err2) => {
                     if (err2) {
                         console.log("Error linking parent to student:", err2);
                         return res.render("register", {
