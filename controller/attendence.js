@@ -250,8 +250,11 @@ exports.viewAttendance = (req, res) => {
 
     res.render("viewattendence", {
       attendance: results,
-      student_id,
+      student_id: req.session.student_id ,
       message: results.length === 0 ? "No attendance records found." : null
     });
+
+    
+
   });
 };
