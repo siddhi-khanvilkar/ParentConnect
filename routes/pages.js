@@ -74,23 +74,53 @@
 
 // module.exports=router;
 
+// const express = require("express");
+// const router = express.Router();
+// const attendanceCtrl = require("../controller/attendence");
+
+// router.get("/", (req, res) => res.render("index"));
+// router.get("/register", (req, res) => res.render("register"));
+// router.get("/login", (req, res) => res.render("login"));
+// router.get("/teacherlogin", (req, res) => res.render("teacherlogin"));
+// router.get("/teacherDashboard", (req, res) => res.render("teacherDashboard"));
+// router.get("/uploadattendence", (req, res) => res.render("uploadattendence"));
+// router.get("/load-students", attendanceCtrl.loadStudents);
+ 
+// router.get("/uploadnotice", (req, res) => res.render("uploadnotice"));
+// router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
+// router.get("/contactparent", (req, res) => res.render("contactparent"));
+// router.get("/viewattendance", attendanceCtrl.viewattendance);
+
+// // Profile route - uses session data set during login
+// router.get("/profile", (req, res) => {
+//   const parentName = req.session.parentName;
+//   const parentStudentId = req.session.student_id;
+//   res.render("profile", { parentName, student_id: parentStudentId });
+// });
+
+// module.exports = router;
+
 const express = require("express");
 const router = express.Router();
 const attendanceCtrl = require("../controller/attendence");
 
+// Static views
 router.get("/", (req, res) => res.render("index"));
 router.get("/register", (req, res) => res.render("register"));
 router.get("/login", (req, res) => res.render("login"));
 router.get("/teacherlogin", (req, res) => res.render("teacherlogin"));
 router.get("/teacherDashboard", (req, res) => res.render("teacherDashboard"));
 router.get("/uploadattendence", (req, res) => res.render("uploadattendence"));
-router.get("/load-students", attendanceCtrl.loadStudents);
 router.get("/uploadnotice", (req, res) => res.render("uploadnotice"));
 router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
 router.get("/contactparent", (req, res) => res.render("contactparent"));
-router.get("/viewattendance", attendanceCtrl.viewAttendance);
 
-// Profile route - uses session data set during login
+// Data routes
+router.get("/loadStudents", attendanceCtrl.loadStudents);
+router.get("/viewattendence", attendanceCtrl.viewattendence); // Fixed capital A
+router.post("/uploadattendence", attendanceCtrl.uploadattendence); // ✅ Required for POST
+
+// Profile route with session data
 router.get("/profile", (req, res) => {
   const parentName = req.session.parentName;
   const parentStudentId = req.session.student_id;
@@ -98,3 +128,4 @@ router.get("/profile", (req, res) => {
 });
 
 module.exports = router;
+
