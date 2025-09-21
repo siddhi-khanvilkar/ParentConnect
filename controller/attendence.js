@@ -219,3 +219,33 @@ exports.saveAttendance = (req, res) => {
     });
   });
 };
+
+// ✅ Fetch attendance for a specific student (parent view)
+exports.viewAttendance = (req, res) => {
+  const { student_id } = req.query; // We'll pass student_id from parent login/session
+
+  if (!student_id) {
+    return res.status(400).send("Student ID is required");
+  }
+
+  const sql = `
+    SELECT month, year, working_days, present_days, 
+           ROUND((present_days/working_days)*100, 2) AS percentage
+    FROM attendance
+    WHERE student_id = ?
+    ORDER BY year DESC, month DESC
+  `;
+
+  db.query(sql, [student_id], (err, results) => {
+    if (err) {
+      console.error("Error fetching attendance:", err);
+      return res.status(500).send("Database error");
+    }
+
+    res.render("viewattendance", {
+      attendance: results,
+      student_id
+    });
+  });
+};
+

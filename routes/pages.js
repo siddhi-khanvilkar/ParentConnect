@@ -48,6 +48,12 @@ router.get('/contactparent', (req, res) => {
     res.render('contactparent');
 });
 
+// View attendance for parent
+router.get("/viewattendance", attendanceCtrl.viewAttendance);
+res.render("profile", { parentName, student_id: parentStudentId });
+
+
+
 
 
 
