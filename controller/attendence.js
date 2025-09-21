@@ -246,7 +246,7 @@ exports.viewAttendance = (req, res) => {
       return res.status(500).send("Database error");
     }
 
-    res.render("viewattendance", {
+    res.render("viewattendence", {
       attendance: results,
       student_id,
       message: results.length === 0 ? "No attendance records found." : null
