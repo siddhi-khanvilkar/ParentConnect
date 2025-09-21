@@ -13,11 +13,13 @@
         <h3>LOG IN</h3>
         <form action="/auth/login" method="POST">
     
-            <label for="stdid">enter childs Student_id</label>
-            <input id="stdid" placeholder="Student_id" name="Student_id" >
+            <label for="stdid">Enter Student_id</label>
+            <input id="stdid" placeholder="student_id" name="student_id" >
             <label for="pa">Enter password</label>
             <input id="pa" placeholder="password" name="pass" type="password" minlength="0" maxlength="8">
             <button id="b1">LOG IN</button>
+
+            
         
         </form>
         {{#if message}}
