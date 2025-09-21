@@ -129,6 +129,7 @@ body {
   font-weight: 600;
   position: relative;
   z-index: 1; /* keeps it above sidebar bg */
+  text-align:center;
 }
 
 .welcome h2 {
