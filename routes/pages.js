@@ -118,7 +118,7 @@ router.get("/contactparent", (req, res) => res.render("contactparent"));
 // Data routes
 router.get("/loadStudents", attendanceCtrl.loadStudents);
 router.get("/viewAttendance", attendanceCtrl.viewAttendance); // Fixed capital A
-router.post("/uploadattendence", attendanceCtrl.uploadattendence); // ✅ Required for POST
+router.post("/uploadattendence", attendanceCtrl.saveAttendance); // ✅ Required for POST
 
 // Profile route with session data
 router.get("/profile", (req, res) => {
