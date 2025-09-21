@@ -339,15 +339,62 @@ exports.register = (req, res) => {
 //     });
 // };
 
-exports.login = (req, res) => {
+// exports.login = (req, res) => {
+//     const student_id = req.body.student_id;
+//     const pass = req.body.pass;
+
+//     console.log("Login attempt for student ID:", student_id);
+
+//     // Step 1: Find parent_id linked to the student
+//     db.query(
+//         "SELECT p.* FROM parents p JOIN student_parent sp ON p.parent_id = sp.parent_id WHERE sp.student_id = ?",
+//         [student_id],
+//         async (error, results) => {
+//             if (error) {
+//                 console.error("DB error:", error);
+//                 return res.render("login", {
+//                     message: "Server error during login"
+//                 });
+//             }
+
+//             if (results.length === 0) {
+//                 console.log("No parent linked to this student ID");
+//                 return res.render("login", {
+//                     message: "Parent is not registered"
+//                 });
+//             }
+
+//             const parent = results[0];
+//             const hashedPassword = parent.password;
+
+//             const isMatch = await bcrypt.compare(pass, hashedPassword);
+
+//             if (!isMatch) {
+//                 return res.render("login", {
+//                     message: "Incorrect Password"
+//                 });
+//             }
+
+//             return res.render("profile", {
+//                 parentName: parent.name
+//             });
+//         }
+//     );
+// };
+
+
+exports.login = async (req, res) => {
     const student_id = req.body.student_id;
     const pass = req.body.pass;
 
     console.log("Login attempt for student ID:", student_id);
 
-    // Step 1: Find parent_id linked to the student
+    // Step 1: Find parent linked to the student
     db.query(
-        "SELECT p.* FROM parents p JOIN student_parent sp ON p.parent_id = sp.parent_id WHERE sp.student_id = ?",
+        `SELECT p.* 
+         FROM parents p 
+         JOIN student_parent sp ON p.parent_id = sp.parent_id 
+         WHERE sp.student_id = ?`,
         [student_id],
         async (error, results) => {
             if (error) {
@@ -367,6 +414,7 @@ exports.login = (req, res) => {
             const parent = results[0];
             const hashedPassword = parent.password;
 
+            // Step 2: Compare entered password with hashed password
             const isMatch = await bcrypt.compare(pass, hashedPassword);
 
             if (!isMatch) {
@@ -375,14 +423,18 @@ exports.login = (req, res) => {
                 });
             }
 
+            // ✅ Step 3: Store student_id in session
+            req.session.student_id = student_id;
+            console.log("Logged in. Session student_id:", req.session.student_id);
+
+            // ✅ Step 4: Render profile with session support
             return res.render("profile", {
                 parentName: parent.name
+                // student_id is now in session, no need to pass it
             });
         }
     );
 };
-
-
 
 
 // ==================== TEACHER LOGIN ====================

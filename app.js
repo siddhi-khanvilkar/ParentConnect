@@ -7,6 +7,16 @@ dotenv.config({ path: "./.env" });
 
 const app = express();
 
+
+const session = require('express-session');
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false } // Use true only if using HTTPS
+}));
+
 // MySQL Connection
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
