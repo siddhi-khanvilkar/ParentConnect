@@ -148,13 +148,13 @@ const db = mysql.createConnection({
 exports.register = (req, res) => {
     console.log(req.body);
     const username = req.body.username;
-    const Student_id = req.body.Student_id;   // student_id from form
-    const Student_rollno = req.body.Student_rollno; // optional
+    const Student_id = req.body.student_id;   // student_id from form
+    const Student_rollno = req.body.student_rollno; // optional
     const pass = req.body.pass;
     const cpass = req.body.cpass;
 
     // ✅ Check if student exists in students table
-    db.query("SELECT student_id FROM student WHERE student_id = ?", [Student_id], (error, studentResults) => {
+    db.query("SELECT Student_id FROM students WHERE Student_id = ?", [Student_id], (error, studentResults) => {
         if (error) {
             console.log(error);
             return;

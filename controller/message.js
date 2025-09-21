@@ -1,5 +1,6 @@
 const db = require('../db'); // or wherever your MySQL connection is
 
+
 exports.sendMessage = (req, res) => {
   const { parentName, studentName, message } = req.body;
 
