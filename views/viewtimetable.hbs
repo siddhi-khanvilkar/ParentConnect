@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -24,4 +24,40 @@
 <a href="/profile">⬅ Back to Profile</a>
 
 </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/viewtimetable.css">
+</head>
+<body>
+    <div class="container">
+    <h2>Timetables for Class: {{studentClass}}</h2>
+
+    {{#if timetables.length}}
+        <ul>
+            {{#each timetables}}
+                <li>
+                    <strong>Date:</strong> {{this.date}}
+                    <a class="pdf-link" href="/uploads/timetables/{{this.filename}}" target="_blank">View PDF</a>
+
+                    <!-- Optional embedded preview -->
+                    <iframe src="/uploads/timetables/{{this.filename}}"></iframe>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No timetables available for your class.</p>
+    {{/if}}
+
+    <a href="/profile" class="back-link">⬅ Back to Profile</a>
+</div>
+    
+</body>
 </html>
+
+
+
