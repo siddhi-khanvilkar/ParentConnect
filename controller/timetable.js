@@ -31,6 +31,7 @@
 const path = require('path');
 const fs = require('fs');
 const db = require('../db'); // <-- Make sure this is included
+const timetableController = require('../controller/timetable'); 
 
 exports.uploadTimetable = (req, res) => {
     const { class: className, date } = req.body;
