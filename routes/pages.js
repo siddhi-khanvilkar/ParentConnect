@@ -103,6 +103,11 @@
 const express = require("express");
 const router = express.Router();
 const attendanceCtrl = require("../controller/attendence");
+const multer = require('multer');
+const noticeController = require('../controller/notice');
+// Use memoryStorage to access buffer
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Static views
 router.get("/", (req, res) => res.render("index"));
@@ -119,6 +124,7 @@ router.get("/contactparent", (req, res) => res.render("contactparent"));
 router.get("/loadStudents", attendanceCtrl.loadStudents);
 router.get("/viewattendence", attendanceCtrl.viewAttendance); // Fixed capital A
 router.post("/uploadattendence", attendanceCtrl.saveAttendance);
+router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadnotice);
 
 
 // Profile route with session data
