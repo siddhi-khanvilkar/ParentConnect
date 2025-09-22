@@ -105,6 +105,7 @@ const router = express.Router();
 const attendanceCtrl = require("../controller/attendence");
 const multer = require('multer');
 const noticeController = require('../controller/notice');
+const timetableController = require('../controller/timetable');
 // Use memoryStorage to access buffer
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });

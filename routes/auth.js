@@ -35,7 +35,6 @@ const noticeController = require("../controller/notice");
 const router = express.Router();
 const path = require("path");
 const messageController = require('../controller/message');
-
 const timetableController = require('../controller/timetable');
 
 
@@ -61,7 +60,7 @@ router.post("/save", attendanceCtrl.saveAttendance);
 // 📄 Notice Upload Route
 router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadnotice);
 
-router.post('/uploadtimetable', upload.single('timetablePDF'), timetableController.uploadTimetable);
+// router.post('/uploadtimetable', upload.single('timetablePDF'), timetableController.uploadTimetable);
 
 router.post('/sendmessage', messageController.sendMessage);
 
