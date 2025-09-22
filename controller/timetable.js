@@ -43,6 +43,8 @@ exports.uploadTimetable = (req, res) => {
 
     // Ensure upload directory exists
     const uploadDir = path.join(__dirname, '../public/uploads/timetables');
+  
+
     if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
     }
@@ -68,3 +70,50 @@ exports.uploadTimetable = (req, res) => {
         res.send('Timetable uploaded and saved successfully.');
     });
 };
+
+const db = require('../db');
+
+exports.viewTimetable = (req, res) => {
+    const studentId = req.session.student_id;
+
+    if (!studentId) {
+        return res.status(401).send("Unauthorized. Please log in.");
+    }
+
+    // Step 1: Get class of the logged-in parent’s child
+    const getClassQuery = `SELECT class FROM students WHERE student_id = ?`;
+
+    db.query(getClassQuery, [studentId], (err, results) => {
+        if (err) {
+            console.error("Error fetching class for student:", err);
+            return res.status(500).send("Internal server error.");
+        }
+
+        if (results.length === 0) {
+            return res.status(404).send("Student not found.");
+        }
+
+        const studentClass = results[0].class;
+
+        // Step 2: Get all timetables for that class
+        const getTimetablesQuery = `
+            SELECT class, date, filename
+            FROM timetables
+            WHERE class = ?
+            ORDER BY date DESC
+        `;
+
+        db.query(getTimetablesQuery, [studentClass], (err, timetables) => {
+            if (err) {
+                console.error("Error fetching timetables:", err);
+                return res.status(500).send("Failed to load timetables.");
+            }
+
+            res.render("viewtimetable", {
+                studentClass,
+                timetables
+            });
+        });
+    });
+};
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Timetables for Class: {{studentClass}}</h2>
+
+{{#if timetables.length}}
+    <ul>
+        {{#each timetables}}
+            <li>
+                <strong>Date:</strong> {{this.date}} <br>
+                <a href="/uploads/timetables/{{this.filename}}" target="_blank">View PDF</a>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p>No timetables available for your class.</p>
+{{/if}}
+
+<a href="/profile">⬅ Back to Profile</a>
+
+</body>
+</html>

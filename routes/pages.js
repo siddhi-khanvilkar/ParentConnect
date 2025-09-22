@@ -126,6 +126,8 @@ router.get("/loadStudents", attendanceCtrl.loadStudents);
 router.get("/viewattendence", attendanceCtrl.viewAttendance); // Fixed capital A
 router.post("/uploadattendence", attendanceCtrl.saveAttendance);
 router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadnotice);
+router.get("/viewtimetable", timetableController.viewTimetable);
+
 
 
 router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
