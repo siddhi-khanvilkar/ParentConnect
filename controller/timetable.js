@@ -71,7 +71,7 @@ exports.uploadTimetable = (req, res) => {
     });
 };
 
-const db = require('../db');
+// const db = require('../db');
 
 exports.viewTimetable = (req, res) => {
     const studentId = req.session.student_id;
