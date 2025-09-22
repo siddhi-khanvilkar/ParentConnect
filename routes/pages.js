@@ -117,7 +117,7 @@ router.get("/teacherlogin", (req, res) => res.render("teacherlogin"));
 router.get("/teacherDashboard", (req, res) => res.render("teacherDashboard"));
 router.get("/uploadattendence", (req, res) => res.render("uploadattendence"));
 router.get("/uploadnotice", (req, res) => res.render("uploadnotice"));
-router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
+// router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
 router.get("/contactparent", (req, res) => res.render("contactparent"));
 
 // Data routes
@@ -126,6 +126,10 @@ router.get("/viewattendence", attendanceCtrl.viewAttendance); // Fixed capital A
 router.post("/uploadattendence", attendanceCtrl.saveAttendance);
 router.post('/uploadnotice', upload.single('noticePDF'), noticeController.uploadnotice);
 
+
+router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
+
+router.post('/uploadtimetable', upload.single('timetablePDF'), timetableController.uploadTimetable);
 
 // Profile route with session data
 router.get("/profile", (req, res) => {
