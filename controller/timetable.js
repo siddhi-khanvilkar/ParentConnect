@@ -101,19 +101,41 @@ exports.viewTimetable = (req, res) => {
             FROM timetables
             WHERE class = ?
             ORDER BY date DESC
+            LIMIT 1
         `;
+        
+
+        // db.query(getTimetablesQuery, [studentClass], (err, timetables) => {
+        //     if (err) {
+        //         console.error("Error fetching timetables:", err);
+        //         return res.status(500).send("Failed to load timetables.");
+        //     }
+
+        //     res.render("viewtimetable", {
+        //         studentClass,
+        //         timetables
+        //     });
+        // });
 
         db.query(getTimetablesQuery, [studentClass], (err, timetables) => {
-            if (err) {
-                console.error("Error fetching timetables:", err);
-                return res.status(500).send("Failed to load timetables.");
-            }
+    if (err) {
+        console.error("Error fetching timetables:", err);
+        return res.status(500).send("Failed to load timetables.");
+    }
 
-            res.render("viewtimetable", {
-                studentClass,
-                timetables
-            });
-        });
+    if (timetables.length === 0) {
+        return res.render("viewtimetable", { studentClass, fileUrl: null });
+    }
+
+    const fileUrl = `/uploads/timetables/${timetables[0].filename}`;
+
+    res.render("viewtimetable", {
+        studentClass,
+        fileUrl
+    });
+});
+
+
     });
 };
 

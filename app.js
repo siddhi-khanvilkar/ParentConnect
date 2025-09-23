@@ -29,10 +29,13 @@ const db = mysql.createConnection({
 // Middleware
 const publicDirectory = path.join(__dirname, "./public");
 app.use(express.static(publicDirectory));
+// Serve uploads folder so files can be accessed directly
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
 // app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views")); // <-- Important change
-app.use(express.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended:false })); 
 
 
 

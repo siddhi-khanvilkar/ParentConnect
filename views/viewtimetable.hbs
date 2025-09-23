@@ -25,7 +25,7 @@
 
 </body>
 </html> --}}
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,8 +45,8 @@
                     <a class="pdf-link" href="/uploads/timetables/{{this.filename}}" target="_blank">View PDF</a>
 
                     <!-- Optional embedded preview -->
-                    <iframe src="/uploads/timetables/{{this.filename}}"></iframe>
-                </li>
+                    {{!-- <iframe src="/uploads/timetables/{{this.filename}}"></iframe> --}}
+                {{!-- </li>
             {{/each}}
         </ul>
     {{else}}
@@ -57,7 +57,28 @@
 </div>
     
 </body>
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Timetable</title>
+    <link rel="stylesheet" href="/viewtimetable.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Timetable for Class: {{studentClass}}</h2>
+
+        {{#if fileUrl}}
+            <iframe src="{{fileUrl}}" width="100%" height="800px" style="border:none;"></iframe>
+        {{else}}
+            <p>No timetable available for your class.</p>
+        {{/if}}
+
+        <a href="/profile" class="back-link">⬅ Back to Profile</a>
+    </div>
+</body>
 </html>
-
-
-
