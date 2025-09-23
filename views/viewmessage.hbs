@@ -1,27 +1,32 @@
+<!-- views/viewmessages.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Messages for {{parentName}}</title>
-  <link rel="stylesheet" href="/contactparent.css">
+  <link rel="stylesheet" href="/contactparent.css" />
 </head>
 <body>
-  <h2>Messages for {{parentName}}</h2>
+  <div class="container">
+    <h2>Messages for {{parentName}}</h2>
 
-  {{#if messages.length}}
-    <ul>
-      {{#each messages}}
-        <li>
-          <strong>Student:</strong> {{this.student_name}}<br>
-          <strong>Message:</strong> {{this.message}}<br>
-          <em>Sent on: {{this.timestamp}}</em>
-        </li><br>
-      {{/each}}
-    </ul>
-  {{else}}
-    <p>No messages found.</p>
-  {{/if}}
+    {{#if messages.length}}
+      <ul>
+        {{#each messages}}
+          <li class="message-item">
+            <strong>Student:</strong> {{this.student_name}}<br />
+            <strong>Message:</strong> {{this.message}}<br />
+            <em>Sent at: {{this.timestamp}}</em>
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      <p>No messages found.</p>
+    {{/if}}
 
-  <a href="/">Back to Home</a>
+    <div class="back-link">
+      <a href="/">← Back to Home</a>
+    </div>
+  </div>
 </body>
 </html>
