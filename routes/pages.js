@@ -133,6 +133,9 @@ router.get("/viewtimetable", timetableController.viewTimetable);
 router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
 
 router.post('/uploadtimetable', upload.single('timetablePDF'), timetableController.uploadTimetable);
+// 📄 Notice Routes
+router.get("/viewnotice", noticeController.getNotices);          // List of notices
+router.get("/notice/:id", noticeController.getNoticeById);      // Single notice
 
 // Profile route with session data
 router.get("/profile", (req, res) => {

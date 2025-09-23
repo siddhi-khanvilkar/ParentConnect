@@ -98,3 +98,32 @@ exports.uploadnotice = (req, res) => {
         res.status(500).send('Server error during upload.');
     }
 };
+exports.getNotices = (req, res) => {
+    const sql = "SELECT id, title, date, created_at FROM notices ORDER BY created_at DESC";
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Database fetch error:", err);
+            return res.status(500).send("Error fetching notices.");
+        }
+        res.render("viewnotice", { notices: results }); 
+    });
+};
+exports.getNoticeById = (req, res) => {
+    const { id } = req.params;
+    const sql = "SELECT * FROM notices WHERE id = ?";
+    db.query(sql, [id], (err, results) => {
+        if (err || results.length === 0) {
+            console.error("Notice fetch error:", err);
+            return res.status(404).send("Notice not found.");
+        }
+
+        const notice = results[0];
+        const filePath = `/uploads/notices/${notice.filename}`;
+        
+        // Option 1: Render a page with an <embed> or link to open PDF
+        res.render("singlenotice", { notice, filePath });
+
+        // Option 2 (direct open PDF in browser):
+        // res.redirect(filePath);
+    });
+};
