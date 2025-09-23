@@ -106,6 +106,7 @@ const attendanceCtrl = require("../controller/attendence");
 const multer = require('multer');
 const noticeController = require('../controller/notice');
 const timetableController = require('../controller/timetable');
+const messageController = require('../controller/message');
 // Use memoryStorage to access buffer
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -120,6 +121,7 @@ router.get("/uploadattendence", (req, res) => res.render("uploadattendence"));
 router.get("/uploadnotice", (req, res) => res.render("uploadnotice"));
 // router.get("/uploadtimetable", (req, res) => res.render("uploadtimetable"));
 router.get("/contactparent", (req, res) => res.render("contactparent"));
+
 
 // Data routes
 router.get("/loadStudents", attendanceCtrl.loadStudents);
@@ -136,6 +138,15 @@ router.post('/uploadtimetable', upload.single('timetablePDF'), timetableControll
 // 📄 Notice Routes
 router.get("/viewnotice", noticeController.getNotices);          // List of notices
 router.get("/notice/:id", noticeController.getNoticeById);      // Single notice
+
+// 📩 Contact Parent Messaging Routes
+
+// POST: Teacher sends a message to a parent
+router.post('/sendmessage', messageController.sendMessage);
+
+// GET: Parent views all messages sent to them
+router.get('/viewmessages/:parentName', messageController.getMessagesByParent);
+
 
 // Profile route with session data
 router.get("/profile", (req, res) => {
