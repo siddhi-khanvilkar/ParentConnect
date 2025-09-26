@@ -1,4 +1,4 @@
-<!-- views/viewmessages.hbs -->
+{{!-- <!-- views/viewmessages.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,5 +28,33 @@
       <a href="/">← Back to Home</a>
     </div>
   </div>
+</body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messages for {{parentName}}</title>
+  <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+  <h1>Messages for {{parentName}}</h1>
+
+  {{#if messages.length}}
+    <ul>
+      {{#each messages}}
+        <li>
+          <strong>From Teacher:</strong> {{student_name}} <br>
+          <em>{{message}}</em> <br>
+          <small>Message ID: {{id}}</small>
+        </li>
+        <hr>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No messages yet.</p>
+  {{/if}}
+
+  <a href="/profile">Back to Dashboard</a>
 </body>
 </html>

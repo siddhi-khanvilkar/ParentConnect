@@ -1,4 +1,4 @@
-{{!-- <!DOCTYPE html>
+{{!-- {{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
 </html> --}}
 
 
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,5 +81,29 @@
 
         <a href="/profile" class="back-link">⬅ Back to Profile</a>
     </div>
+</body>
+</html> --}} --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Timetable</title>
+</head>
+<body>
+  <h2>Class Timetable</h2>
+
+  {{#if timetable}}
+    <p><strong>Class:</strong> {{timetable.class}}</p>
+    <p><strong>Date:</strong> {{timetable.date}}</p>
+    <embed src="/timetables/{{timetable.filename}}" 
+           type="application/pdf" 
+           width="90%" 
+           height="600px" />
+  {{else}}
+    <p>No timetable uploaded for this class yet.</p>
+  {{/if}}
+
+  <br>
+  <a href="/profile">⬅ Back to Profile</a>
 </body>
 </html>

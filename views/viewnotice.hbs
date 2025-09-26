@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Notices</title>
@@ -33,4 +33,43 @@
     <br>
     <a href="/teacherDashboard">⬅ Back to Dashboard</a>
 </body>
+</html> --}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notices</title>
+    <link rel="stylesheet" href="/viewnotice.css">
+</head>
+<body>
+    <h2>All Notices</h2>
+
+    {{#if notices.length}}
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            {{#each notices}}
+            <tr>
+                <td><a href="/notice/{{this.id}}">{{this.title}}</a></td>
+                <td>{{this.date}}</td>
+
+               
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{else}}
+    <p>No notices uploaded yet.</p>
+    {{/if}}
+
+    <br>
+    <a href="/teacherDashboard">⬅ Back to Dashboard</a>
+</body>
 </html>
+
